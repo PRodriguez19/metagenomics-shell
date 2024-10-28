@@ -16,22 +16,24 @@ keypoints:
 
 ## Getting your project started
 
-Project organization is one of the most important parts of a sequencing project, and yet is often overlooked amidst the
+Project organization is one of the most essential parts of a sequencing project, and yet, it is often overlooked amidst the
 excitement of getting a first look at new data. Of course, while it is best to get yourself organized before you even begin your analyses,
-it is never too late to start, either.  
+it is never too late to start.  
 
-You should approach your sequencing project similarly to how you do a biological experiment and this ideally begins with experimental design. We're going to assume that you've already designed a beautiful 
-sequencing experiment to address your biological question, collected appropriate samples, and that you have 
+You should approach your sequencing project similarly to how you do a biological experiment, 
+and this ideally begins with experimental design. We're going to assume that you've already designed a beautiful 
+sequencing experiment to address your biological question, collected appropriate samples, and have 
 enough statistical power to answer the questions you're interested in asking. These 
-steps are all incredibly important, but beyond the scope of our course. 
+steps are all crucial but beyond the scope of our course. 
 For all of those steps (collecting specimens, extracting DNA, prepping your samples)
 you've likely kept a lab notebook that details how and why you did each step. However, the process of documentation doesn't stop at 
 the sequencer!  
 
 Genomics projects can quickly accumulate hundreds of files across 
-tens of folders. Every computational analysis you perform over the course of your project is going to create
-many files, which can especially become a problem when you'll inevitably want to run some of those
-analyses again. For instance, you might have made significant headway into your project, but then have to remember the PCR conditions
+tens of folders. Every computational analysis you perform throughout your project will create
+many files, which can especially become problematic when you inevitably want to rerun some of those
+analyses. For instance, you might have made significant headway 
+into your project but must remember the PCR conditions
 you used to create your sequencing library months prior. 
 
 Other questions might arise along the way: 
@@ -40,22 +42,23 @@ Other questions might arise along the way:
 - Which quality cutoff did you use?
 - What version of a given program did you implement your analysis in?
 
-Good documentation is key to avoiding this issue, and luckily enough,
+Good documentation is vital in avoiding this issue, and luckily enough,
 recording your computational experiments is even easier than recording lab data. Copy/Paste will become
 your best friend, sensible file names will make your analysis understandable by you and your collaborators, and 
-writing the methods section for your next paper will be easy! Remember that in any given project of yours, it's worthwhile to consider
-a future version of yourself as an entirely separate collaborator. The better your documenation is, the more this 'collaborator' will
+writing the methods section for your following paper will be easy! Remember that in any project of yours, it's worthwhile to consider
+a future version of yourself as an entirely separate collaborator. The better your documentation is, the more this 'collaborator' will
 feel indebted to you!
 
-With this in mind, let's have a look at the best practices for 
+With this in mind, let's look at the best practices for 
 documenting your genomics project. Your future self will thank you.  
 
-In this exercise we will setup a file system for the project we will be working on during this workshop.  
+In this exercise, we will set up a file system for the project we will be working on during this workshop.  
 
-We will start by creating a directory that we can use for the rest of the workshop. First navigate to your home directory. Then confirm that you are in the correct directory using the `pwd` command.
+We will start by creating a directory that we can use for the rest of the workshop. 
+First, navigate to your home directory. Then, confirm that you are in the correct directory using the `pwd` command.
 
 ~~~
-$ cd
+$ cd ~
 $ pwd
 ~~~
 {: .bash}
