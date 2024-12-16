@@ -56,63 +56,6 @@ on your computer. If you're using Windows, you'll need to download a separate pr
 
 In this workshop, we suggest using a remote server, to invest most of our time learning the basics of shell by manipulating some experimental data, instead of dealing with installations. The remote server already includes the required bioinformatics packages as well as the large datasets that usually take a lot of time to load into everyone's local computers.
 
-> ## Shell alternatives
-> 
-> In case you decide to follow the lesson on your computer, you won't need to use `ssh` command because you will not connect to a remote machine.  
-> If you are working on a remote machine that includes RStudio (which you will open in a browser) you can work in the terminal that is included in RStudio.
->
-{: .callout}
-
-Ask your instructor for the `ip_address` and password to login.
-
-To log in you need the `ssh` command (ssh stands for Secure Shell), your username and the adress of the machine you are logging into.
-~~~
-$ ssh dcuser@ec2-18-702-132-236.compute-1.amazonaws.com
-~~~
-{: .bash}
-
-Then you are prompted to type the password. Take into account that while you are typing a password no characters will appear on the screen, trust that they are being typed and press enter. 
-
-After logging in, you will see a screen showing something like this: 
-
-~~~
-Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com/
-
-  System information as of Sat Feb  2 00:08:17 UTC 2019
-
-  System load: 0.0                Memory usage: 5%   Processes:       82
-  Usage of /:  29.9% of 98.30GB   Swap usage:   0%   Users logged in: 0
-
-  Graph this data and manage this system at:
-    https://landscape.canonical.com/
-
-  Get cloud support with Ubuntu Advantage Cloud Guest:
-    http://www.ubuntu.com/business/services/cloud
-
-597 packages can be updated.
-444 updates are security updates.
-
-New release '16.04.5 LTS' available.
-Run 'do-release-upgrade' to upgrade to it.
-
-
-Last login: Fri Feb  1 22:34:53 2019 from c-73-116-43-163.hsd1.ca.comcast.net
-~~~
-{: .output}
-
-This provides a lot of information about the remote server that you're logging in to. We're not going to use most of this information for
-our workshop, so you can clear your screen using the `clear` command. 
-
-~~~
-$ clear
-~~~
-{: .bash}
-
-This will scroll your screen down to give you a fresh screen and will make it easier to read. 
-You haven't lost any of the information on your screen. If you scroll up, you can see everything that has been output to your screen
-up until this point.
 
 ## Navigating your file system
 
