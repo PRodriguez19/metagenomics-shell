@@ -52,7 +52,7 @@ In this lesson you will learn how to use the command line interface to move arou
 ## How to access the shell
 
 On a Mac or Linux machine, you can access a shell through a program called Terminal, which is already available
-on your computer. If you're using Windows, you'll need to download a separate program to access the shell (see installation instructions [here](https://carpentries-incubator.github.io/metagenomics-workshop/setup.html)).
+on your computer. If you're using Windows, you'll need to download a separate program to access the shell (see installation instructions [here](https://prodriguez19.github.io/metagenomics-workshop/setup.html)).
 
 In this workshop, we suggest using a remote server, to invest most of our time learning the basics of shell by manipulating some experimental data, instead of dealing with installations. The remote server already includes the required bioinformatics packages as well as the large datasets that usually take a lot of time to load into everyone's local computers.
 
@@ -67,19 +67,6 @@ and directories (also called "folders"),
 which hold files or other directories.
 
 Several commands are frequently used to create, inspect, rename, and delete files and directories.
-
-> ## Preparation Magic
->
-> If you type the command:
-> `PS1='\W\$ '`
-> into your shell, followed by pressing the <kbd>Enter</kbd> key,
-> your window should look like this:    
-> `~\$ `   
-> That only shows the ultimate directory where you ar standing. In this case
-> it is the home directory. The symbol `~` is an abbreviation of the home directory. 
-> This isn't necessary to follow along (in fact, your prompt may have
-> other helpful information you want to know about).  This is up to you!  
-{: .callout}
 
 The dollar sign is a **prompt**, which shows us that the shell is waiting for input;
 your shell may use a different character as a prompt and may add information before
@@ -123,7 +110,7 @@ $ ls
 {: .bash}
 
 ~~~
-dc_workshop  R 
+dc_workshop  
 ~~~
 {: .output}
 
