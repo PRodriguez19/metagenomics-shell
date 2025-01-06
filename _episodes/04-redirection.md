@@ -1,7 +1,7 @@
 ---
 title: "Redirection"
-teaching: 30
-exercises: 15
+teaching: 15
+exercises: 10
 questions:
 - "How can I search within files?"
 - "How can I combine existing commands to do new things?"
@@ -15,8 +15,6 @@ keypoints:
 - "`command > file` redirects a command's output to a file."
 - "`command >> file` redirects a command's output to a file without overwriting the existing contents of the file."
 - "`command_1 | command_2` redirects the output of the first command as input to the second command."
-- "for loops are used for iteration"
-- "`basename` gets rid of repetitive parts of names"
 ---
 
 ## Searching files
@@ -164,7 +162,7 @@ $ wc bad_reads.txt
 {: .bash}
 
 ~~~
-  402   489 50076 bad_reads.txt
+  484     588   59867 bad_reads.txt
 ~~~
 {: .output}
 
@@ -177,7 +175,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-402 bad_reads.txt
+484 bad_reads.txt
 ~~~
 {: .output}
 
@@ -186,14 +184,14 @@ four to get the number of sequences that match our search pattern.
 
 > ## Exercise 2: Using `wc`
 >
-> How many sequences in `JC1A_R2.fastq` contain at least 3 consecutive Ns?
+> How many sequences in `JC1A_R2.fastq` contain at least 3 consecutive Ns? Redirect the output to bad_reads2.txt
 >
 >> ## Solution
 >>  
 >>
 >> ~~~
->> $ grep NNN JC1A_R2.fastq > bad_reads.txt
->> $ wc -l bad_reads.txt
+>> $ grep NNN JC1A_R2.fastq > bad_reads2.txt
+>> $ wc -l bad_reads2.txt
 >> ~~~
 >> {: .bash}
 >> 
@@ -304,134 +302,3 @@ do anything all that impressive on their own, but when you start chaining
 them together, you can do some really powerful things very
 efficiently. 
 
-## Writing for loops
-
-Loops are key to productivity improvements through automation as they allow us to execute commands repeatedly. 
-Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes). 
-Loops are helpful when performing operations on groups of sequencing files, such as unzipping or trimming multiple
-files. We will use loops for these purposes in subsequent analyses, but will cover the basics of them for now.
-
-When the shell sees the keyword `for`, it knows to repeat a command (or group of commands) once for each item in a list. 
-Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the **variable**, and 
-the commands inside the loop are executed, before moving on to  the next item in the list. Inside the loop, we call for 
-the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable**
-as a variable name and substitute its value in its place, rather than treat it as text or an external command. In shell programming, this is usually called "expanding" the variable.
-
-~~~
-$ cd ../untrimmed_fastq/
-~~~
-{: .bash}
-
-Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
-
-~~~
-$ for filename in *.fastq
-> do
-> head -n 2 ${filename} >> seq_info.txt
-> done
-~~~
-{: .bash}
-
-To see the content of the little file we just made it is useful to use the `cat` command.
-~~~
-cat seq_info.txt
-~~~
-{: .bash}
-~~~
-@MISEQ-LAB244-W7:91:000000000-A5C7L:1:1101:13417:1998 1:N:0:TCGNAG
-CTACGGCGCCATCGGCGNCCCCGGACGGTAGGAGACGGCGATGCTGGCCCTCGGCGCGGTCGCGTTCCTGAACCCCTGGCTGCTGGCGGCGCTCGCGGCGCTGCCGGTGCTCTGGGTGCTGCTGCGGGCGACGCCGCCGAGCCCGCGGCGGGTCGGATTCCCCGGCGTGCGCCCCCCGCTCCGGCTCGAGGACGCCGCACCGACGCCCCACCCCCCCCCCCGGTGGCTCCTCCTGCCGCCCTGCCTGATCC
-@MISEQ-LAB244-W7:91:000000000-A5C7L:1:1101:13417:1998 2:N:0:TCGNAG
-CGCGATCAGCAGCGGCCCGGAACCGGTCAGCCGCGCCNTGGGGTTCAGCACCGGCNNGGCGAAGGCCGCGATCGCGGCGGCGGCGATCAGGCAGCGCAGCAGCAGGAGCCACCAGGGCGTGCGGTCGGGCGTCCGTTCGGCGTCCTCGCGCCCCAGCAGCAGGCGCACGCCAGGGAATCCGACCCGCCGCCGGCTCGGCCGCGTCNCCCGCNCCCGCCCCCCGAGCACCCGNAGCCNCNCCACCGCCGCCC
-@MISEQ-LAB244-W7:156:000000000-A80CV:1:1101:12622:2006 1:N:0:CTCAGA
-CCCGTTCCTCGGGCGTGCAGTCGGGCTTGCGGTCTGCCATGTCGTGTTCGGCGTCGGTGGTGCCGATCAGGGTGAAATCCGTCTCGTAGGGGATCGCGAAGATGATCCGCCCGTCCGTGCCCTGAAAGAAATAGCACTTGTCAGATCGGAAGAGCACACGTCTGAACTCCAGTCACCTCAGAATCTCGTATGCCGTCTTCTGCTTGAAAAAAAAAAAAGCAAACCTCTCACTCCCTCTACTCTACTCCCTT
-@MISEQ-LAB244-W7:156:000000000-A80CV:1:1101:12622:2006 2:N:0:CTCAGA
-GACAAGTGCTATTTCTTTCAGGGCACGGACGGGCGGATCATCTTCGCGATCCCCTACGAGACGGATTTCACCCTGATCGGCACCACCGACGCCGAACACGACATGGCAGACCGCAAGCCCGACTGCACGCCCGAGGAACGGGAGATCGGAAGAGCGTCGTGTAGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATTAAAAAAAAAAAGCGATCAACTCGACCGACCTGTCTTATTATATCTCACGTAA
-~~~
-{: .output}
-
-The for loop begins with the formula `for <variable> in <group to iterate over>`. In this case, the word `filename` is designated 
-as the variable to be used over each iteration. In our case `JC1A_R1.fastq` and `JC1A_R2.fastq` will be substituted for `filename` 
-because they fit the pattern of ending with .fastq in directory we've specified. The next line of the for loop is `do`. The next line is 
-the code that we want to execute. We are telling the loop to print the first two lines of each variable we iterate over and save the information
-to a file. Finally, the word `done` ends the loop.
-
-Note that we are using `>>` to append the text to our `seq_info.txt` file. If we used `>`, the `seq_info.txt` file would be rewritten
-every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
-
-## Using Basename in for loops
-Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the `.fastq` extension from the files that we’ve been working with. 
-
-~~~
-$ basename JC1A_R2.fastq .fastq
-~~~
-{: .bash}
-
-We see that this returns just the SRR accession, and no longer has the .fastq file extension on it.
-
-~~~
-JC1A_R2
-~~~
-{: .output}
-
-If we try the same thing but use `.fasta` as the file extension instead, nothing happens. This is because basename only works when it exactly matches a string in the file.
-
-~~~
-$ basename JC1A_R2.fastq .fasta
-~~~
-{: .bash}
-
-~~~
-JC1A_R2.fastq
-~~~
-{: .output}
-
-Basename is really powerful when used in a for loop. It allows to access just the file prefix, which you can use to name things. Let's try this.
-
-Inside our for loop, we create a new name variable. We call the basename function inside the parenthesis, then give our variable name from the for loop, in this case `${filename}`, and finally state that `.fastq` should be removed from the file name. It’s important to note that we’re not changing the actual files, we’re creating a new variable called name. The line > echo $name will print to the terminal the variable name each time the for loop runs. Because we are iterating over two files, we expect to see two lines of output.
-
-~~~
-$ for filename in *.fastq
-> do
-> name=$(basename ${filename} .fastq)
-> echo ${name}
-> done
-~~~
-{: .bash}
-~~~
-JC1A_R1
-JC1A_R2
-JP4D_R1
-JP4D_R2
-~~~
-{: .output}
-
-
-> ## Exercise 3: Using `basename`
->
-> Print the file prefix of all of the `.txt` files in our current directory.
->
->> ## Solution
->>  
->>
->> ~~~
->> $ for filename in *.txt
->> > do
->> > name=$(basename ${filename} .txt)
->> > echo ${name}
->> > done
->> ~~~
->> {: .bash}
->>
-> {: .solution}
-{: .challenge}
-
-One way this is really useful is to move files. Let's rename all of our .txt files using `mv` so that they have the years on them, which will document when we created them. 
-
-~~~
-$ for filename in *.txt
-> do
-> name=$(basename ${filename} .txt)
-> mv ${filename}  ${name}_2019.txt
-> done
-~~~
-{: .bash}
